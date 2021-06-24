@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">SupermarTEC</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="login-box">
+    
+  <ion-card class="ion-text-center">
+    <div class="ion-margin-top">
+      <img src="../../../assets/login_market.png" width="120" height="120" >
+    </div>
+
+    <ion-card-header class="ion-text-center">
+      <ion-card-title>
+        Market Login
+      </ion-card-title>
+
+      <ion-card-content>
+   
+
+        <div class="ion-margin-top">
+          <ion-button [routerLink]="['/register']" color="tertirary" fill="outline" expand="block">Create account</ion-button>
+        </div>
+
+        <form autocomplete="off" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+          <ion-item>
+
+            <ion-label position="floating">Email</ion-label>
+
+            <ion-input  formControlName= "email"
+                        type = "email"
+            ></ion-input>
+
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Password</ion-label>
+
+            <ion-input  formControlName="password"   
+                        type="password"
+            ></ion-input>
+          </ion-item>
+
+          <div>
+            <ion-grid>
+              <ion-row>
+                <ion-col >
+                  <ion-button type="submit" 
+                              [disabled]="!loginForm.valid"
+                  >Login
+                  </ion-button>
+                </ion-col>
+              
+                <ion-col>
+                  <ion-button color = "light" (click)="googleSignIn()">
+                    <ion-icon name="logo-google"></ion-icon>
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+            </div>
+
+        </form>
+
+
+      </ion-card-content>
+    
+    </ion-card-header>
+  </ion-card>
+  </div>
+</ion-content>

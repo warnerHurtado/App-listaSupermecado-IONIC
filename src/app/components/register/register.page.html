@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Register</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div class="login-box">
+    
+  <ion-card class="ion-text-center">
+    <div class="ion-margin-top">
+      <img src="../../../assets/login_market.png" width="120" height="120" >
+    </div>
+
+    <ion-card-header class="ion-text-center">
+
+      <ion-card-content>
+        
+        <form autocomplete="off" [formGroup]="registForm" (ngSubmit)="onSubmit()">
+          
+          <ion-item>
+
+            <ion-label position="floating">Email</ion-label>
+
+            <ion-input  formControlName="email"
+                        type = "email"
+            ></ion-input>
+
+          </ion-item>
+
+          <ion-item>
+
+            <ion-label position="floating">User name</ion-label>
+
+            <ion-input  formControlName="userName"
+                        type = "text"
+            ></ion-input>
+
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Password</ion-label>
+
+            <ion-input  formControlName="password"  
+                        type="password"
+            ></ion-input>
+          </ion-item>
+
+          
+          <div class="ion-margin-top">
+            <ion-button type="submit" 
+            [disabled]="!registForm.valid" expand="block">Create account</ion-button>
+          </div>
+  
+        </form>
+
+      </ion-card-content>
+    
+    </ion-card-header>
+  </ion-card>
+  </div>
+</ion-content>
+
