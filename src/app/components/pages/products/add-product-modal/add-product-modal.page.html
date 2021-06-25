@@ -1,0 +1,106 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Product</ion-title>
+    <ion-buttons slot = "end">
+      <ion-button (click)="dimissModal()">
+        Close
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title style="font-size: medium; text-align: center;">
+        Product information
+      </ion-card-title>
+    </ion-card-header>
+
+
+    <ion-card-content>
+      
+      <form autocomplete="off" [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        
+        <ion-item class="ion-margin-top">
+          <ion-label position="floating">Product name</ion-label>
+          <ion-input  placeholder="Example: ice cream"
+          formControlName="productName"
+          type = "text" 
+          ></ion-input>
+        </ion-item>
+        
+        <ion-item >
+          <ion-label position="floating">Description</ion-label>
+          <ion-input  placeholder="Product description"
+          formControlName="description"
+          type = "text" 
+          ></ion-input>
+        </ion-item>
+        
+        
+        <ion-item >
+          <ion-label position="floating">Estimated cost</ion-label>
+          <ion-input  placeholder="₡1000"
+          formControlName="estimatedCost"
+          type = "text" 
+          ></ion-input>
+        </ion-item>
+        
+        
+        <ion-item >
+          <ion-label position="floating">Product tag</ion-label>
+          <ion-select formControlName="tag">
+            <ion-select-option *ngFor="let tag of product_tags; let i = index;" [value]="product_tags[i]">
+              {{ tag }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        
+        <div style="margin-top: 10%;">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-label>
+                  Product image
+                </ion-label>                
+              </ion-col>
+              
+              <ion-buttons style="text-align: right;">
+                <ion-button (click)="onUpload()" type="button">
+                  <ion-icon name = "add"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+              
+            </ion-row>
+            
+            <ion-row *ngIf="imgUrl">
+              <ion-col>
+                <img src="{{preview}}" >
+                <p>{{url}}</p>
+              </ion-col>
+              
+              <ion-buttons>
+                <ion-button (click)="onDeleteImage()" type="button">
+                  <ion-icon name = "trash"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+            </ion-row>
+          </ion-grid>
+          
+        </div>
+        
+       
+        <div style="text-align: right;" class="ion-margin-top">
+          <ion-button [disabled]="!productForm.valid" color="primary" type="submit">
+            Add product
+          </ion-button>
+        </div>
+      </form>
+
+    </ion-card-content>
+      
+
+  </ion-card>
+</ion-content>

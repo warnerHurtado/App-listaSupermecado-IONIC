@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
-
+import { Storage } from '@ionic/storage';
+import { AuthServiceService } from 'src/app/services/auth-service.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -15,15 +16,29 @@ export class LoginPage implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router,) { }
+    private router: Router,
+    private _authService: AuthServiceService,
+    private storage: Storage,
+    private _toast: ToastService) { }
 
 
   async ngOnInit() {
     this.generateForm();
-    //await this.storage.create();
-    //this.loggedInChecker();
+    await this.storage.create();
+    this.loggedInChecker();
 
 
+  }
+
+  googleSignIn() {
+    this._authService.googleSignIn().then(response => {
+      if (response['message']) {
+        this._toast.informationToast(response['message'], 'danger', 'Login fail');
+      } else {
+        console.log(response)
+        this.saveUserStorage(response);
+      }
+    })
   }
 
 
@@ -52,9 +67,37 @@ export class LoginPage implements OnInit {
         });
       return;
     }
-    console.log('Holaaa');
 
-    //this.firebaseLogin();
+    this.firebaseLogin();
+  }
+
+  private firebaseLogin() {
+    this._authService.localSignIn(this.loginForm.value).then(response => {
+      if (response['message']) {
+        this._toast.informationToast(response['message'], 'danger', 'Login fail');
+      } else {
+        this.saveUserStorage(response)
+      }
+    })
+  }
+
+  private async saveUserStorage({ email, displayName, uid }) {
+    const userInfo = {
+      uid,
+      displayName,
+      email
+    }
+    await this.storage.set('userInformation', JSON.stringify(userInfo));
+    this.loginForm.reset();
+    this.router.navigate(['/home'])
+  }
+
+  loggedInChecker() {
+    this.storage.get('userInformation').then((val) => {
+      if (val !== null) {
+        this.router.navigate(['/home'])
+      }
+    })
   }
 
 }

@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar >
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title >Market</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+
+  <ion-card style="text-align: center; margin-top: 5%;">
+      <!-- <img src="../../../../assets/market.jpg" width="200" height="150"/> -->
+
+    <ion-card-header>
+      <ion-card-title>{{market.supermarket_name}}</ion-card-title>
+      <ion-card-subtitle style="margin-top: 5%;">{{market.description}}</ion-card-subtitle>
+      <ion-button  fill="outline" color="primary"> <ion-icon slot="icon-only" style="margin-right: 5%; color: royalblue;" name="pencil"></ion-icon></ion-button>
+      <ion-button  fill="outline" color="danger"> <ion-icon slot="icon-only" style="margin-left: 5%; color: red;" name="trash"></ion-icon></ion-button>
+    </ion-card-header>
+
+
+    <ion-card>
+  
+
+      <ion-header>
+        <ion-row >
+        <ion-col style="text-align: center;">
+          <ion-card-header>
+            <ion-card-subtitle>Shopping List</ion-card-subtitle>
+          </ion-card-header>
+        </ion-col>
+  
+        <ion-col style="margin-top: 4%;">
+          <ion-button size="small" color="success" (click)="openModalCreateList()">
+            <ion-icon name="add-outline"></ion-icon>
+            Add list
+          </ion-button> 
+        </ion-col>
+  
+      </ion-row>
+
+      </ion-header>
+
+      <ion-item href="#" class="ion-activated">
+        <ion-icon name="file-tray-full-outline"  slot="start"></ion-icon>
+        <ion-label>Card Link Item 1 activated</ion-label>
+        <ion-button fill="outline" slot="end">View</ion-button>
+      </ion-item>
+    
+      <ion-item href="#">
+        <ion-icon name="file-tray-full-outline"  slot="start"></ion-icon>
+        <ion-label>Card Link Item 2</ion-label>
+        <ion-button fill="outline" slot="end">View</ion-button>
+      </ion-item>
+
+      <ion-item href="#" class="ion-activated">
+        <ion-icon name="file-tray-full-outline"  slot="start"></ion-icon>
+        <ion-label>Card Link Item 1 activated</ion-label>
+        <ion-button fill="outline" slot="end">View</ion-button>
+      </ion-item>
+    
+      <ion-item href="#">
+        <ion-icon name="file-tray-full-outline"  slot="start"></ion-icon>
+        <ion-label>Card Link Item 2</ion-label>
+        <ion-button fill="outline" slot="end">View</ion-button>
+      </ion-item>
+
+      <ion-item href="#" class="ion-activated">
+        <ion-icon name="file-tray-full-outline"  slot="start"></ion-icon>
+        <ion-label>Card Link Item 1 activated</ion-label>
+        <ion-button fill="outline" slot="end">View</ion-button>
+      </ion-item>
+    
+      <ion-item href="#">
+        <ion-icon name="file-tray-full-outline"  slot="start"></ion-icon>
+        <ion-label>Card Link Item 2</ion-label>
+        <ion-button fill="outline" slot="end">View</ion-button>
+      </ion-item>
+      
+    </ion-card>
+
+        
+  </ion-card>
+
+</ion-content>

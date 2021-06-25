@@ -1,0 +1,85 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="onLogout()">
+        <ion-icon name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Markets</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-content *ngIf="userMarkets.length === 0">
+    <ion-card style="margin-top: 20%;">
+      <ion-card-content>
+        <img src="../../../../assets/noMarket.jpg">
+        <p style="text-align: center"><strong>You do not have markerts, tap the button to create a new one</strong></p>
+      </ion-card-content>
+    </ion-card>
+  </ion-content>
+  
+  
+  <ion-content *ngIf="userMarkets.length !== 0">
+  
+        <ion-grid>
+  
+          <ion-row *ngFor="let market of userMarkets">
+  
+              <ion-col >
+              
+                <ion-card (click)="onClick( market.documentId )">            
+                  <ion-card-header>
+                    <ion-card-subtitle>Market</ion-card-subtitle>
+                    <ion-card-title style="font-size: medium;">{{ market.supermarket_name }}</ion-card-title>
+                  </ion-card-header>
+                  <ion-card-content>
+                    <p>{{ market.description }}</p>
+                  </ion-card-content>
+    
+                </ion-card>
+              </ion-col>
+          </ion-row>
+  
+        </ion-grid>
+       
+  </ion-content>
+
+      <ion-grid>
+
+        <ion-row *ngFor="let market of userMarkets">
+          <ion-col >
+            <ion-card (click)="onClick( market.documentId )">     
+              <ion-row>
+                <ion-col>
+                  <ion-card-header>
+                    <ion-card-subtitle>Market</ion-card-subtitle>
+                    <ion-card-title style="font-size: medium;">{{ market.supermarket_name }}</ion-card-title>
+                  </ion-card-header>
+                  <ion-card-content>
+                    <p>{{ market.description }}</p>
+                  </ion-card-content>
+                </ion-col>      
+  
+                <ion-col style="margin-top: 15%; margin-left: 10%;">
+                  <ion-button color="dark"><ion-icon name="eye-outline"></ion-icon></ion-button>
+                </ion-col>
+
+              </ion-row> 
+
+            </ion-card>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+   
+  <ion-fab vertical="bottom" slot="fixed" horizontal="end">
+    <ion-fab-button (click)="newMarketAlert()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+
+</ion-content>
